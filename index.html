@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Tesoro Congelado</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <main id="app">
+    <h1>El Tesoro Congelado</h1>
+
+    <!-- Pantalla de inicio -->
+    <section id="pantalla-inicio">
+      <p class="intro">Dos jugadores se turnan para abrir cofres. Cuidado: algunos tienen hielo.</p>
+      <div class="campo">
+        <label for="nombre-0">Jugador 1</label>
+        <input type="text" id="nombre-0" maxlength="14" placeholder="Nombre del jugador 1">
+      </div>
+      <div class="campo">
+        <label for="nombre-1">Jugador 2</label>
+        <input type="text" id="nombre-1" maxlength="14" placeholder="Nombre del jugador 2">
+      </div>
+      <button id="btn-iniciar" class="boton">Iniciar partida</button>
+
+      <div class="reglas">
+        <h2>Reglas</h2>
+        <ul>
+          <li>Hay 16 cofres. Cada turno el jugador abre uno.</li>
+          <li>Fase 1: gana el primero que llegue a 12 puntos.</li>
+          <li>Regla D: cuando se abren 8 cofres la victoria se invierte y gana quien tenga menos puntos al final.</li>
+          <li>Regla B: cada 4 jugadas exitosas dos cofres se intercambian de lugar.</li>
+          <li>Regla C: los cofres con hielo no suman puntos, congelan tu siguiente turno y ponen la pantalla en rojo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pantalla de juego -->
+    <section id="pantalla-juego" class="oculto">
+      <div id="marcador">
+        <div class="jugador" id="tarjeta-0">
+          <span class="jugador-nombre" id="nombre-tarjeta-0"></span>
+          <span class="jugador-puntos" id="puntos-0">0</span>
+          <span class="jugador-estado" id="estado-0"></span>
+        </div>
+        <div class="jugador" id="tarjeta-1">
+          <span class="jugador-nombre" id="nombre-tarjeta-1"></span>
+          <span class="jugador-puntos" id="puntos-1">0</span>
+          <span class="jugador-estado" id="estado-1"></span>
+        </div>
+      </div>
+
+      <p id="fase"></p>
+      <p id="turno"></p>
+
+      <div id="tablero"></div>
+
+      <p id="mensaje"></p>
+
+      <div class="acciones">
+        <button id="btn-continuar" class="boton oculto">Continuar (turno congelado)</button>
+        <button id="btn-reiniciar" class="boton secundario">Reiniciar</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="juego.js"></script>
+</body>
+</html>

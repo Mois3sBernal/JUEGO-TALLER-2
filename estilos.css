@@ -1,0 +1,124 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #12263a;
+  color: #f2f5f7;
+  display: flex;
+  justify-content: center;
+  transition: background 0.4s;
+}
+
+/* Regla C: cuando hay un jugador congelado el fondo se pone rojo */
+body.alerta-roja { background: #a40e1c; }
+/* Regla D: en la fase 2 el fondo cambia a un tono distinto */
+body.invertido { background: #2a1d3d; }
+body.invertido.alerta-roja { background: #a40e1c; }
+
+#app {
+  width: 100%;
+  max-width: 520px;
+  padding: 20px 16px 40px;
+  text-align: center;
+}
+
+h1 { margin: 10px 0 18px; font-size: 2rem; letter-spacing: 1px; }
+h2 { font-size: 1.1rem; margin: 0 0 8px; }
+
+.oculto { display: none; }
+
+.intro { margin-bottom: 18px; }
+
+.campo { text-align: left; margin-bottom: 12px; }
+.campo label { display: block; margin-bottom: 4px; font-size: 0.9rem; }
+.campo input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #5b7a96;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.boton {
+  padding: 12px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #12263a;
+  background: #f5c542;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.boton:hover { background: #ffd966; }
+.boton.secundario { background: #d5dde4; }
+
+.reglas {
+  margin-top: 26px;
+  padding: 14px 16px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.reglas ul { margin: 0; padding-left: 18px; }
+.reglas li { margin-bottom: 6px; }
+
+/* Marcador */
+#marcador { display: flex; gap: 12px; margin-bottom: 14px; }
+.jugador {
+  flex: 1;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.jugador.activo { border-color: #f5c542; background: rgba(245, 197, 66, 0.18); }
+.jugador-nombre { font-weight: bold; }
+.jugador-puntos { font-size: 2rem; font-weight: bold; }
+.jugador-estado { min-height: 1.2em; font-size: 0.85rem; color: #ffd966; }
+
+#fase { margin: 6px 0; font-weight: bold; }
+#turno { margin: 6px 0 12px; }
+
+/* Tablero 4x4 */
+#tablero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.cofre {
+  aspect-ratio: 1 / 1;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #3b2a10;
+  background: #c98b2b;
+  border: 3px solid #8a5a12;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cofre:hover:not(:disabled) { background: #e0a43f; }
+.cofre:disabled { cursor: default; }
+.cofre.abierto-puntos { background: #f5e6a8; border-color: #bfa040; color: #3b2a10; }
+.cofre.abierto-trampa { background: #bfe8f7; border-color: #3b8fb5; color: #0b3a52; font-size: 0.85rem; }
+.cofre.movido { animation: parpadeo 1s 2; }
+
+@keyframes parpadeo {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 #ffffff; }
+  50%  { transform: scale(1.12); box-shadow: 0 0 14px 4px #ffffff; }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 #ffffff; }
+}
+
+#mensaje { min-height: 3em; margin: 6px 0 14px; }
+.acciones { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 380px) {
+  h1 { font-size: 1.6rem; }
+  .cofre { font-size: 1rem; }
+}
